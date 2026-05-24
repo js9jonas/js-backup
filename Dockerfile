@@ -1,7 +1,6 @@
-FROM alpine:3.19
+FROM postgres:17-alpine
 
 RUN apk add --no-cache \
-    postgresql-client \
     rclone \
     dcron \
     bash \

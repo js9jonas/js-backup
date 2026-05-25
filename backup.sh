@@ -19,3 +19,8 @@ echo "$(date): Upload para Drive concluído"
 
 find /backups -name "*.sql.gz" -mtime "+${KEEP_DAYS:-7}" -delete
 echo "$(date): Limpeza local concluída"
+
+rclone delete "gdrive:${GDRIVE_FOLDER:-backups/postgres}/" \
+  --min-age "${KEEP_DAYS:-7}d" \
+  --include "*.sql.gz"
+echo "$(date): Limpeza Drive concluída (> ${KEEP_DAYS:-7} dias)"
